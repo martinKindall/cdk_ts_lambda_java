@@ -6,7 +6,8 @@ plugins {
 
 idea {
     module {
-        sourceDirs += file("$projectDir/build/generated/")
+        sourceDirs += file("$projectDir/build/generated/sources/annotationProcessor/java/main")
+        testSourceDirs += file("$projectDir/build/generated/sources/annotationProcessor/java/test")
     }
 }
 
@@ -21,7 +22,9 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.44'
     implementation 'com.google.code.gson:gson:2.9.1'
     implementation 'com.google.dagger:dagger:2.44'
+    testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.44'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testImplementation 'org.mockito:mockito-core:4.8.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 }
 

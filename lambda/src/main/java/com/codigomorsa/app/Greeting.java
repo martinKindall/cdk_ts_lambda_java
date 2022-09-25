@@ -19,7 +19,7 @@ final class Payload {
 
 public class Greeting {
     private static final Gson gson = new Gson();
-    private Vet vet;
+    private final Vet vet;
 
     public Greeting() {
         this(DaggerVetFactory.create().init());
