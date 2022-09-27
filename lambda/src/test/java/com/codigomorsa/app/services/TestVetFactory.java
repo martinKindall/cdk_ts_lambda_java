@@ -10,4 +10,5 @@ import javax.inject.Singleton;
 public interface TestVetFactory extends VetFactory {
 
     TestVetDatabase testDb();
+    Vet getVet();
 }

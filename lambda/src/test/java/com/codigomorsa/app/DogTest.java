@@ -6,16 +6,16 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-public class GreetingTest {
+public class DogTest {
 
     @Test
-    public void greetingTest() {
+    public void onEventTest() {
         var testFactory = DaggerTestVetFactory.builder().build();
         var testDb = testFactory.testDb();
 
         Assertions.assertEquals(0, testDb.getExecuted());
 
-        var greeting = new Greeting(testFactory.init());
+        var greeting = new Dog(testFactory.init());
 
         greeting.onEvent(Map.of("queryStringParameters", Map.of("dogName", "thonka")));
 

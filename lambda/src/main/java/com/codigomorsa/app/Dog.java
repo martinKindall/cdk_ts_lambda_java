@@ -1,5 +1,6 @@
 package com.codigomorsa.app;
 
+import com.codigomorsa.app.dto.DogPayload;
 import com.codigomorsa.app.services.DaggerVetFactory;
 import com.codigomorsa.app.services.Vet;
 import com.google.gson.Gson;
@@ -7,30 +8,20 @@ import com.google.gson.JsonElement;
 
 import java.util.Map;
 
-final class Payload {
-    String version;
-    Params queryStringParameters;
-
-    final static class Params {
-        String dogName;
-        String dogAge;
-    }
-}
-
-public class Greeting {
+public class Dog {
     private static final Gson gson = new Gson();
     private final Vet vet;
 
-    public Greeting() {
+    public Dog() {
         this(DaggerVetFactory.create().init());
     }
 
-    Greeting(Vet vet) {
+    Dog(Vet vet) {
         this.vet = vet;
     }
 
     public Map<String, Object> onEvent(Map<String, Object> request) {
-        Payload.Params params = getParams(request);
+        DogPayload.Params params = getParams(request);
 
         if (params == null || params.dogName == null) {
             return Map.of(
@@ -45,8 +36,8 @@ public class Greeting {
                 "body", "The name of the dog is " + params.dogName);
     }
 
-    private Payload.Params getParams(Map<String, Object> request) {
+    private DogPayload.Params getParams(Map<String, Object> request) {
         JsonElement jsonElement = gson.toJsonTree(request);
-        return gson.fromJson(jsonElement, Payload.class).queryStringParameters;
+        return gson.fromJson(jsonElement, DogPayload.class).queryStringParameters;
     }
 }

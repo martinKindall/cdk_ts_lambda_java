@@ -9,6 +9,6 @@ public class MyVetDatabase implements VetDatabase {
 
     @Override
     public void saveDiagnose(String diagnose) {
-        System.out.println("Diagnose was saved in DynamoDB!");
+        System.out.printf("Diagnose: `%s` was saved in DynamoDB!", diagnose);
     }
 }

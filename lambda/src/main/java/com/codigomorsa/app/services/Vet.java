@@ -15,4 +15,15 @@ public class Vet {
         database.saveDiagnose(diagnose);
         return diagnose;
     }
+
+    public String diagnoseCat(String cat, int age) {
+        String diagnose;
+        if (age >= 10) {
+            diagnose = cat + " needs a full check.";
+        } else {
+            diagnose = cat + " is al right, the temperature is perfect.";
+        }
+        database.saveDiagnose(diagnose);
+        return diagnose;
+    }
 }
