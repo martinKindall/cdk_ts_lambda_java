@@ -25,6 +25,7 @@ public class Cat {
 
         System.out.println(vet.diagnoseCat(payload.name, payload.age));
 
+
         return Map.of("statusCode", 200);
     }
 

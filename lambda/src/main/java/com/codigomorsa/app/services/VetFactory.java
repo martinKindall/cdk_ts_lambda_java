@@ -6,4 +6,5 @@ import dagger.Component;
 @Component(modules = VetModule.class)
 public interface VetFactory {
     Vet init();
+    QueueSender initQueue();
 }
