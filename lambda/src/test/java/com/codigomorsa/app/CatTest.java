@@ -12,7 +12,7 @@ public class CatTest {
     public void onEventTest() {
         var testFactory = DaggerTestVetFactory.builder().build();
         var testDb = testFactory.testDb();
-        var cat = new Cat(testFactory.init());
+        var cat = new Cat(testFactory);
 
         Assertions.assertEquals(0, testDb.getExecuted());
 
