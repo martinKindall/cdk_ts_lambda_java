@@ -40,7 +40,7 @@ export class CdkJsLambdaJavaStack extends Stack {
     this.shippingReceiverLambda = new lambda.Function(this, 'ShippingReceiver', {
       runtime: lambda.Runtime.JAVA_11,
       handler: "com.codigomorsa.shipping.Receiver::handleRequest",
-      code: lambda.Code.fromAsset("./shipping/build/libs/app-1.0-SNAPSHOT-all.jar"),
+      code: lambda.Code.fromAsset("./shipping/build/libs/shipping-1.0-SNAPSHOT-all.jar"),
       memorySize: 256,
       timeout: Duration.seconds(10)
     });
@@ -79,5 +79,8 @@ export class CdkJsLambdaJavaStack extends Stack {
 
     const shippingEventSource = new lambdaEventSource.SqsEventSource(orderToShippingQueue);
     this.shippingReceiverLambda.addEventSource(shippingEventSource);
+
+    orderToShippingQueue.grantSendMessages(this.catLambda);
+    this.catLambda.addEnvironment("QUEUE_URL", orderToShippingQueue.queueUrl);
   }
 }

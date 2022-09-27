@@ -10,7 +10,7 @@ public class Receiver implements RequestHandler<SQSEvent, Void> {
     public Void handleRequest(SQSEvent event, Context context) {
 
         for(SQSEvent.SQSMessage msg : event.getRecords()){
-            System.out.println(new String(msg.getBody()));
+            System.out.println(msg.getBody());
         }
 
         return null;
