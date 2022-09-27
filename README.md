@@ -32,3 +32,9 @@ Now that we are using Dependency Injection that should be implemented in one sin
 Lambdas on the same domain share code following the [Fat Lambda pattern](https://github.com/cdk-patterns/serverless/blob/main/the-lambda-trilogy/README.md). 
 
 This architecture would scale in terms of complexity better if we add an explicit orchestrator layer using Step Functions for example.
+
+## IAM roles & policies
+
+As we know, EC2 and Lambdas in Java follow the [Default Credential Provider Chain](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html).
+That means, as long as they have a Role in the _Instance Profile_ with permissions for accessing AWS services, we don't need to care about credentials in code itself. We manage those permissions using the CDK. We grant the cat lambda permission to send to SQS.
+And the receiver lambda receives permission for consuming sqs events from the Event Source creation.
