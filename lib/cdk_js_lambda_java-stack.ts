@@ -25,7 +25,7 @@ export class CdkJsLambdaJavaStack extends Stack {
       runtime: lambda.Runtime.JAVA_11,
       handler: "com.codigomorsa.app.Dog::onEvent",
       code: lambda.Code.fromAsset("./lambda/build/libs/app-1.0-SNAPSHOT-all.jar"),
-      memorySize: 256,
+      memorySize: 1024,
       timeout: Duration.seconds(10)
     });
 
@@ -33,7 +33,7 @@ export class CdkJsLambdaJavaStack extends Stack {
       runtime: lambda.Runtime.JAVA_11,
       handler: "com.codigomorsa.app.Cat::onEvent",
       code: lambda.Code.fromAsset("./lambda/build/libs/app-1.0-SNAPSHOT-all.jar"),
-      memorySize: 256,
+      memorySize: 1024,
       timeout: Duration.seconds(10)
     });
 
@@ -41,7 +41,7 @@ export class CdkJsLambdaJavaStack extends Stack {
       runtime: lambda.Runtime.JAVA_11,
       handler: "com.codigomorsa.shipping.Receiver::handleRequest",
       code: lambda.Code.fromAsset("./shipping/build/libs/shipping-1.0-SNAPSHOT-all.jar"),
-      memorySize: 256,
+      memorySize: 1024,
       timeout: Duration.seconds(10)
     });
   }

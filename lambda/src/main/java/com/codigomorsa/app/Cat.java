@@ -6,7 +6,6 @@ import com.codigomorsa.app.services.QueueSender;
 import com.codigomorsa.app.services.Vet;
 import com.codigomorsa.app.services.VetFactory;
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 
 import java.util.Map;
 
@@ -27,6 +26,10 @@ public class Cat {
     public Map<String, Object> onEvent(Map<String, Object> request) {
         CatPayload payload = getParams(request);
 
+        if (payload.name == null || payload.name.equals("") || payload.age < 0)  {
+            return Map.of("statusCode", 400);
+        }
+
         System.out.println(vet.diagnoseCat(payload.name, payload.age));
         queueSender.send("Diagnosed cat " + payload.name + ". Ship receipt.");
 
@@ -34,7 +37,6 @@ public class Cat {
     }
 
     private CatPayload getParams(Map<String, Object> request) {
-        JsonElement jsonElement = gson.toJsonTree(request.get("body"));
-        return gson.fromJson(jsonElement, CatPayload.class);
+        return gson.fromJson((String) request.get("body"), CatPayload.class);
     }
 }

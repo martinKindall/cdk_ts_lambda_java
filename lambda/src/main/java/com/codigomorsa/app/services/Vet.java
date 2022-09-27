@@ -21,7 +21,7 @@ public class Vet {
         if (age >= 10) {
             diagnose = cat + " needs a full check.";
         } else {
-            diagnose = cat + " is al right, the temperature is perfect.";
+            diagnose = cat + ", age " + age + ", is al right, the temperature is perfect.";
         }
         database.saveDiagnose(diagnose);
         return diagnose;

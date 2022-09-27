@@ -16,7 +16,7 @@ public class CatTest {
 
         Assertions.assertEquals(0, testDb.getExecuted());
 
-        cat.onEvent(Map.of("body", Map.of("name", "felix", "age", "5")));
+        cat.onEvent(Map.of("body", "{'name': 'felix', 'age': 5}"));
 
         Assertions.assertEquals(1, testDb.getExecuted());
     }

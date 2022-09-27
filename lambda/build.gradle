@@ -25,6 +25,7 @@ dependencies {
 
     implementation platform("software.amazon.awssdk:bom:2.17.281")
     implementation 'software.amazon.awssdk:sqs'
+    implementation 'org.slf4j:slf4j-simple:2.0.2'
 
     testAnnotationProcessor 'com.google.dagger:dagger-compiler:2.44'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
