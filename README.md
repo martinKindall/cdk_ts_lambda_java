@@ -1,15 +1,34 @@
-# Welcome to your CDK TypeScript project
+# CDK using Typescript, Lambdas using Java 11
 
-You should explore the contents of this project. It demonstrates a CDK app with an instance of a stack (`CdkJsLambdaJavaStack`)
-which contains an Amazon SQS queue that is subscribed to an Amazon SNS topic.
+I wanted to create a project where the CDK and the lambdas were
+written on different languages. I chosed Java for Lambdas just because of personal taste, and also wanted to use a Dependency Injection system on lambdas
+avoiding the use of Spring Boot.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+Dagger 2 was used on this toy project, showing me the easy of use and the powerful tool it can be.
 
-## Useful commands
+Unit tests were done using Junit 5 and Dagger 2 for mocking.
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+## Domains
+
+There are 2 domains in this project:
+
+- Vet (lambda folder)
+- Shipping
+
+Vet domain is just a collection of dummy routes that inject data through rest endpoints. 
+
+Shipping domain is another "dummy" domain that for now is receiving data from __Vet__ through an SQS queue.
+
+## Architecture
+
+The final architecture should look like this:
+
+![Image](/architecture.png "Architecture")
+
+Just replace the "Orders" domain for Vet.
+DynamoDB for now is just a dummy service, there's no database in place.
+Now that we are using Dependency Injection that should be implemented in one single place.
+
+Lambdas on the same domain share code following the [Fat Lambda pattern](https://github.com/cdk-patterns/serverless/blob/main/the-lambda-trilogy/README.md). 
+
+This architecture would scale in terms of complexity better if we add an explicit orchestrator layer using Step Functions for example.
